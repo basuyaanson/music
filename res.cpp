@@ -55,7 +55,7 @@ void Res::traverfile()
     filesystem::directory_iterator begin(ress);
     for (filesystem::directory_iterator end; begin != end; ++begin)
     {
-        if (!filesystem::is_directory(begin->path()))//判定是否為.mp3
+        if (!filesystem::is_directory(begin->path()))//判斷是否是資料夾，是就跳過
         {
               //獲取路徑，獲取文件名並轉為string，判斷文件是否為音樂文件(.mp3)
             if (ismusic(begin->path().filename().string()))
