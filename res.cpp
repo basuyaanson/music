@@ -2,7 +2,7 @@
 
 map<int, string>Res::music;
 
-//提供訪問數據
+//提供引用來訪問數據（單例模式）
 Res* Res::getres()
 {
     static Res* p = new Res;
