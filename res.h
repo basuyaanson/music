@@ -3,15 +3,15 @@
 #include"common.h"
 
 
-//­µ¼Ö¸ê·½ ³æ¨Ò³]­p¼Ò¦¡
+//éŸ³æ¨‚è³‡æº
 class Res
 {
 public:
-    static Res* getres();//´£¨Ñ³X°İ¼Æ¾Ú
-    static bool ismusic(const string& name);//§PÂ_¤å¥ó¬O§_¬°­µ¼Ö¤å¥ó(.mp3)
-    static string getnewname(string name);//¦pªG­µ¼Ö¤å¥ó¦³ªÅ®æ,´À´«¬°_
-    static void traverfile(); //¹M¾ú¤å¥ó§¨
-    static map<int, string> music; //¼Æ²Õ STL
+    static Res* getres();//æä¾›è¨ªå•æ•¸æ“š
+    static bool ismusic(const string& name);//åˆ¤æ–·æ–‡ä»¶æ˜¯å¦ç‚ºéŸ³æ¨‚æ–‡ä»¶(.mp3)
+    static string getnewname(string name);//å¦‚æœéŸ³æ¨‚æ–‡ä»¶æœ‰ç©ºæ ¼,æ›¿æ›ç‚º_
+    static void traverfile(); //éæ­·æ–‡ä»¶å¤¾
+    static map<int, string> music; //å„²å­˜éŸ³æ¨‚æ–‡ä»¶
 private:
     Res();
 };
