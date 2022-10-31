@@ -2,21 +2,22 @@
 
 map<int, string>Res::music;
 
-//´£¨Ñ³X°İ¼Æ¾Ú
+//æä¾›è¨ªå•æ•¸æ“š
 Res* Res::getres()
 {
     static Res* p = new Res;
     return p;
 }
 
-//§PÂ_¤å¥ó¬O§_¬°­µ¼Ö¤å¥ó(.mp3)
+//åˆ¤æ–·æ–‡ä»¶æ˜¯å¦ç‚ºéŸ³æ¨‚æ–‡ä»¶(.mp3)
 bool Res::ismusic(const string& name)
 {
     int lenght = name.size();
+    //substrå‡½æ•¸ï¼Œç”¨ä¾†æ“·å–æª”æ¡ˆå¾Œé¢çš„å­—
     return name.substr(lenght - 4) == ".mp3";
 }
 
-//¦pªG­µ¼Ö¤å¥ó¦³ªÅ®æ,´À´«¬°_
+//å¦‚æœéŸ³æ¨‚æ–‡ä»¶æœ‰ç©ºæ ¼,æ›¿æ›ç‚º_
 string Res::getnewname(string name)
 {
     for (int i = 0; i < name.size(); i++)
@@ -29,48 +30,51 @@ string Res::getnewname(string name)
     return name;
 }
 
-//¹M¾ú¤å¥ó§¨
+//éæ­·æ–‡ä»¶å¤¾
 void Res::traverfile()
 {
     system("color 70");
-    cout << "½Ğ¿é¤J­µ¼Ö®w¤å¥ó§¨¸ô®|:";
+    cout << "è«‹è¼¸å…¥éŸ³æ¨‚åº«æ–‡ä»¶å¤¾è·¯å¾‘:";
     string resroot;
     cin >> resroot;
-    //§P©w¸ô®|¬O§_¦s¦b­µ¼ÖÀÉ®×
+   
+    
     filesystem::path ress(resroot);
-
+    //åˆ¤å®šè·¯å¾‘æ˜¯å¦å­˜åœ¨éŸ³æ¨‚æª”æ¡ˆ
     if (!filesystem::exists(ress))
     {
-        cout << "¥¼§ä¨ì­µ¼ÖÀÉ®×......" << endl;
+        cout << "æœªæ‰¾åˆ°éŸ³æ¨‚æª”æ¡ˆ......" << endl;
         exit(0);
     }
 
-    //±o¨ì·í«e¸ô®|¤U©Ò¦³­µ¼Öªº¤å¥ó¸ô®|
-    int pos = 1;
+    //å¾—åˆ°ç•¶å‰è·¯å¾‘ä¸‹æ‰€æœ‰éŸ³æ¨‚çš„æ–‡ä»¶è·¯å¾‘
+    int pos = 1;//çµ¦æ¯å€‹éŸ³æ¨‚æ–‡ä»¶é…å€‹åºè™Ÿ
     string oldname;
     string newname;
+    //ä½¿ç”¨è¿­ä»£å™¨éæ­·æ–‡ä»¶
     filesystem::directory_iterator begin(ress);
-    for (filesystem::directory_iterator end; begin != end; ++begin)//¹M¾ú¤å¥ó
+    for (filesystem::directory_iterator end; begin != end; ++begin)
     {
-        if (!filesystem::is_directory(begin->path()))//§P©w¬O§_¬°.mp3(***·|¸õ¹L·í«e¸ô®|¤Uªº¨ä¥L¤å¥ó§¨***)
+        if (!filesystem::is_directory(begin->path()))//åˆ¤å®šæ˜¯å¦ç‚º.mp3
         {
-            if (ismusic(begin->path().filename().string()))// §PÂ_¤å¥ó¬O§_¬°­µ¼Ö¤å¥ó(.mp3)
+              //ç²å–è·¯å¾‘ï¼Œç²å–æ–‡ä»¶åä¸¦è½‰ç‚ºstringï¼Œåˆ¤æ–·æ–‡ä»¶æ˜¯å¦ç‚ºéŸ³æ¨‚æ–‡ä»¶(.mp3)
+            if (ismusic(begin->path().filename().string()))
             {
-                //¦pªG­µ¼Ö¤å¥ó¦³ªÅ®æ,´À´«¬°_
+                //å¦‚æœéŸ³æ¨‚æ–‡ä»¶æœ‰ç©ºæ ¼,æ›¿æ›ç‚º_
                 oldname = resroot + "/" + begin->path().filename().string();
                 newname = getnewname(oldname);
-                int resulf = rename(oldname.c_str(), newname.c_str());//.c_str():±NstringÂà´«¦¨c»y¨¥ªºstr
+                int resulf = rename(oldname.c_str(), newname.c_str());//.c_str():å°‡stringè½‰æ›æˆcèªè¨€çš„str
                 music[pos++] = newname;
 
             }
         }
     }
-    cout << "­µ¼Ö®w¥[¸ü¦¨¥\....." << endl;
+    cout << "éŸ³æ¨‚åº«åŠ è¼‰æˆåŠŸ....." << endl;
 }
 
-//ªì©l¤Æ­µ¼Ö®w
+//ä½¿ç”¨å»ºæ§‹å­åˆå§‹åŒ–
 Res::Res()
 {
-    cout << "ªì©l¤Æ­µ¼Ö®w.....\n\n";
+    cout << "åˆå§‹åŒ–éŸ³æ¨‚åº«.....\n\n";
     traverfile();
 }
