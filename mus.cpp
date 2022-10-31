@@ -1,7 +1,7 @@
 #include"musicplayer.h"
 #include "res.h"
 
-//ªì©l¤Æ
+//ä½¿ç”¨å»ºæ§‹å­åˆå§‹åŒ–
 musicplayer::musicplayer()
 {
     Res::getres();
@@ -15,35 +15,35 @@ musicplayer::musicplayer()
 
 
 
-//¤¶­±
+//ä»‹é¢
 void musicplayer::menu()
 {
     asciiart();
     cout << "\n------------------------------------------" << endl;
-    cout << "------------³¯¬FÂEªº­µ¼Ö¼½©ñ¾¹------------" << endl;
-    cout << "\t\t0.°h¥X" << endl;
-    cout << "\t\t1.¼½©ñ­µ¼Ö" << endl;
-    cout << "\t\t2.¼È°±" << endl;
-    cout << "\t\t3.Ä~Äò" << endl;
-    cout << "\t\t4.¤U¤@­º" << endl;
-    cout << "\t\t5.¤W¤@­º" << endl;
-    cout << "\t\t6.ÀH¾÷¼½©ñ" << endl;
+    cout << "------------é™³æ”¿é´»çš„éŸ³æ¨‚æ’­æ”¾å™¨------------" << endl;
+    cout << "\t\t0.é€€å‡º" << endl;
+    cout << "\t\t1.æ’­æ”¾éŸ³æ¨‚" << endl;
+    cout << "\t\t2.æš«åœ" << endl;
+    cout << "\t\t3.ç¹¼çºŒ" << endl;
+    cout << "\t\t4.ä¸‹ä¸€é¦–" << endl;
+    cout << "\t\t5.ä¸Šä¸€é¦–" << endl;
+    cout << "\t\t6.éš¨æ©Ÿæ’­æ”¾" << endl;
     cout << "------------------------------------------" << endl;
     cout << "------------------------------------------" << endl;
 }
 
-//«öÁä«ü¥O
+//æŒ‰éµæŒ‡ä»¤
 void musicplayer::keydown()
 {
     int usekey = 0;
     showmusic();
     cout << "------------------------------------------" << endl;
-    cout << "\n½Ğ¿é¤J±zªº¿ï¾Ü:";
+    cout << "\nè«‹è¼¸å…¥æ‚¨çš„é¸æ“‡:";
     cin >> usekey;
     switch (usekey)
     {
     case 0:
-        cout << "\nÅwªï¤U¦¸¨Ï¥Î!!!";
+        cout << "\næ­¡è¿ä¸‹æ¬¡ä½¿ç”¨!!!";
         exit(0);
         break;
     case 1:
@@ -67,12 +67,12 @@ void musicplayer::keydown()
     }
 }
 
-//Åã¥Üºq³æ
+//é¡¯ç¤ºæ­Œå–®
 void musicplayer::showmusic()
 {
 
-    cout << "\t\tºq³æ:" << endl;
-    for (auto v : Res::music)
+    cout << "\t\tæ­Œå–®:" << endl;
+    for (auto v : Res::music)//åŸºæ–¼ç¯„åœçš„ for è¿´åœˆï¼Œéæ­·mapå®¹å™¨
     {
         if (v.first == curidex)
         {
@@ -85,7 +85,7 @@ void musicplayer::showmusic()
     }
 }
 
-//¼½©ñ
+//æ’­æ”¾
 void musicplayer::playmusic()
 {
     string openCmd = cmd[CMD::open] + Res::music[curidex];
@@ -94,46 +94,46 @@ void musicplayer::playmusic()
     mciSendString(playCmd.c_str(), 0, 0, 0);
 }
 
-//¼È°±
+//æš«åœ
 void musicplayer::pausemusic()
 {
     string pauseCmd = cmd[CMD::pause] + Res::music[curidex];
     mciSendString(pauseCmd.c_str(), 0, 0, 0);
 }
 
-//Ä~Äò
+//ç¹¼çºŒ
 void musicplayer::resumemusic()
 {
     string resumeCmd = cmd[CMD::resume] + Res::music[curidex];
     mciSendString(resumeCmd.c_str(), 0, 0, 0);
 }
 
-//¤U¤@­º
+//ä¸‹ä¸€é¦–
 void musicplayer::next()
 {
     string closeCmd = cmd[CMD::close] + Res::music[curidex];
     mciSendString(closeCmd.c_str(), 0, 0, 0);
-    curidex == Res::music.size() ? curidex = 1 : curidex++;//¨¾¤î­µ¼Ö¿ï¾Ü¶W¥X¤å¥ó§¨Ãä¬É
+    curidex == Res::music.size() ? curidex = 1 : curidex++;//é˜²æ­¢éŸ³æ¨‚é¸æ“‡è¶…å‡ºæ–‡ä»¶å¤¾é‚Šç•Œ
     string openCmd = cmd[CMD::open] + Res::music[curidex];
     mciSendString(openCmd.c_str(), 0, 0, 0);
     string playCmd = cmd[CMD::play] + Res::music[curidex];
     mciSendString(playCmd.c_str(), 0, 0, 0);
 }
 
-//¤W¤@­º
+//ä¸Šä¸€é¦–
 void musicplayer::pre()
 {
 
     string closeCmd = cmd[CMD::close] + Res::music[curidex];
     mciSendString(closeCmd.c_str(), 0, 0, 0);
-    curidex == 1 ? curidex = Res::music.size() : curidex--;//¨¾¤î­µ¼Ö¿ï¾Ü¶W¥X¤å¥ó§¨Ãä¬É 
+    curidex == 1 ? curidex = Res::music.size() : curidex--;//é˜²æ­¢éŸ³æ¨‚é¸æ“‡è¶…å‡ºæ–‡ä»¶å¤¾é‚Šç•Œ 
     string openCmd = cmd[CMD::open] + Res::music[curidex];
     mciSendString(openCmd.c_str(), 0, 0, 0);
     string playCmd = cmd[CMD::play] + Res::music[curidex];
     mciSendString(playCmd.c_str(), 0, 0, 0);
 }
 
-//ÀH¾÷¼½©ñ
+//éš¨æ©Ÿæ’­æ”¾
 void musicplayer::random()
 {
     string closeCmd = cmd[CMD::close] + Res::music[curidex];
@@ -146,7 +146,7 @@ void musicplayer::random()
 
 }
 
-// ASCIIÃÀ³N¹Ï§Î(¬ü½s¥Î)
+// ASCIIè—è¡“åœ–å½¢(ç¾ç·¨ç”¨)
 void musicplayer::asciiart()
 {
     cout << " .......%,`iW:..;:.::,..$>i>>>W:.:..:.'............ \n";
