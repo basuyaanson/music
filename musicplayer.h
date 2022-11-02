@@ -2,23 +2,23 @@
 
 #include"common.h"
 
-//¼½©ñ¾¹Ãş
+//æ’­æ”¾å™¨é¡
 class musicplayer
 {
 public:
-    enum CMD { open, play, pause, resume, close };//¦CÁ|«¬§O
+    enum CMD { open, play, pause, resume, close };//åˆ—èˆ‰å‹åˆ¥ï¼Œæ–¹ä¾¿é–±è®€
     musicplayer();
-    void menu(); //¤¶­±
-    void keydown();  //«öÁä«ü¥O
-    void showmusic();  //Åã¥Üºq³æ
-    void playmusic(); //¼½©ñ
-    void pausemusic(); //¼È°±
-    void resumemusic();//Ä~Äò
-    void next(); //¤U¤@­º
-    void pre();//¤W¤@­º
-    void random();//ÀH¾÷¼½©ñ
-    void asciiart();////ASCIIÃÀ³N¹Ï§Î(¬ü½s¥Î)
+    void menu(); //ä»‹é¢
+    void keydown();  //æŒ‰éµæŒ‡ä»¤
+    void showmusic();  //é¡¯ç¤ºæ­Œå–®
+    void playmusic(); //æ’­æ”¾
+    void pausemusic(); //æš«åœ
+    void resumemusic();//ç¹¼çºŒ
+    void next(); //ä¸‹ä¸€é¦–
+    void pre();//ä¸Šä¸€é¦–
+    void random();//éš¨æ©Ÿæ’­æ”¾
+    void asciiart();////ASCIIè—è¡“åœ–å½¢(ç¾ç·¨ç”¨)
 private:
-    int curidex;  //·í«e¿ï¾Üªº­µ¼Ö
-    vector<string> cmd; //±N«öÁä©R¥OÂà¬°¦r²Å¦ê
+    int curidex;  //ç•¶å‰é¸æ“‡çš„éŸ³æ¨‚
+    vector<string> cmd; //å°‡æŒ‰éµå‘½ä»¤è½‰ç‚ºå­—ç¬¦ä¸²
 };
