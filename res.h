@@ -11,7 +11,7 @@ public:
     static bool ismusic(const string& name);//判斷文件是否為音樂文件(.mp3)
     static string getnewname(string name);//如果音樂文件有空格,替換為_
     static void traverfile(); //遍歷文件夾
-    static map<int, string> music; //儲存音樂文件
+    static map<int, string> music; //使用容器儲存音樂文件
 private:
     Res();
 };
