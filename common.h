@@ -10,5 +10,5 @@
 #include<Windows.h>
 #include <stdlib.h>
 #include <mmsystem.h>
-#pragma comment(lib,"winmm.lib") //ÀRºA®w
+#pragma comment(lib,"winmm.lib")
 using namespace std;
