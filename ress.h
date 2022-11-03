@@ -56,7 +56,7 @@ void Res::traverfile()
 
 
     filesystem::path ress(resroot);
-    //判定路徑是否存在音樂檔案
+    //判定路徑是否存在
     if (!filesystem::exists(ress))
     {
         cout << "未找到音樂檔案......" << endl;
