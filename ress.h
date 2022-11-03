@@ -12,29 +12,29 @@
 #include <mmsystem.h>
 #pragma comment(lib,"winmm.lib")
 using namespace std;
-//­µ¼Ö¸ê·½
+//éŸ³æ¨‚è³‡æºé¡ ä½¿ç”¨éœæ…‹æˆå“¡
 class Res
 {
 public:
-    //static Res* getres();//´£¨Ñ¤Ş¥Î¨Ó³X°İ¼Æ¾Ú¡]³æ¨Ò¼Ò¦¡¡^
-    static bool ismusic(const string& name);//§PÂ_¤å¥ó¬O§_¬°­µ¼Ö¤å¥ó(.mp3)
-    static string getnewname(string name);//¦pªG­µ¼Ö¤å¥ó¦³ªÅ®æ,´À´«¬°_
-    static void traverfile(); //¹M¾ú¤å¥ó§¨
-    static map<int, string> music; //¨Ï¥Î®e¾¹Àx¦s­µ¼Ö¤å¥ó
+    //static Res* getres();//æä¾›å¼•ç”¨ä¾†è¨ªå•æ•¸æ“šï¼ˆå–®ä¾‹æ¨¡å¼ï¼‰
+    static bool ismusic(const string& name);//åˆ¤æ–·æ–‡ä»¶æ˜¯å¦ç‚ºéŸ³æ¨‚æ–‡ä»¶(.mp3)
+    static string getnewname(string name);//å¦‚æœéŸ³æ¨‚æ–‡ä»¶æœ‰ç©ºæ ¼,æ›¿æ›ç‚º_
+    static void traverfile(); //éæ­·æ–‡ä»¶å¤¾
+    static map<int, string> music; //ä½¿ç”¨å®¹å™¨å„²å­˜éŸ³æ¨‚æ–‡ä»¶
     Res();
 private:
 
 };
 
 map<int, string>Res::music;
-//§PÂ_¤å¥ó¬O§_¬°­µ¼Ö¤å¥ó(.mp3)
+//åˆ¤æ–·æ–‡ä»¶æ˜¯å¦ç‚ºéŸ³æ¨‚æ–‡ä»¶(.mp3)
 bool Res::ismusic(const string& name)
 {
     int lenght = name.size();
-    //substr¨ç¼Æ¡A¥Î¨ÓÂ^¨úÀÉ®×«á­±ªº¦r
+    //substrå‡½æ•¸ï¼Œç”¨ä¾†æ“·å–æª”æ¡ˆå¾Œé¢çš„å­—
     return name.substr(lenght - 4) == ".mp3";
 }
-//¦pªG­µ¼Ö¤å¥ó¦³ªÅ®æ,´À´«¬°_
+//å¦‚æœéŸ³æ¨‚æ–‡ä»¶æœ‰ç©ºæ ¼,æ›¿æ›ç‚º_
 string Res::getnewname(string name)
 {
     for (int i = 0; i < name.size(); i++)
@@ -46,50 +46,50 @@ string Res::getnewname(string name)
     }
     return name;
 }
-//¹M¾ú¤å¥ó§¨
+//éæ­·æ–‡ä»¶å¤¾
 void Res::traverfile()
 {
     system("color 70");
-    cout << "½Ğ¿é¤J­µ¼Ö®w¤å¥ó§¨¸ô®|:";
+    cout << "è«‹è¼¸å…¥éŸ³æ¨‚åº«æ–‡ä»¶å¤¾è·¯å¾‘:";
     string resroot;
     cin >> resroot;
 
 
     filesystem::path ress(resroot);
-    //§P©w¸ô®|¬O§_¦s¦b­µ¼ÖÀÉ®×
+    //åˆ¤å®šè·¯å¾‘æ˜¯å¦å­˜åœ¨éŸ³æ¨‚æª”æ¡ˆ
     if (!filesystem::exists(ress))
     {
-        cout << "¥¼§ä¨ì­µ¼ÖÀÉ®×......" << endl;
+        cout << "æœªæ‰¾åˆ°éŸ³æ¨‚æª”æ¡ˆ......" << endl;
         exit(0);
     }
 
-    //±o¨ì·í«e¸ô®|¤U©Ò¦³­µ¼Öªº¤å¥ó¸ô®|
-    int pos = 1;//µ¹¨C­Ó­µ¼Ö¤å¥ó°t­Ó§Ç¸¹
+    //å¾—åˆ°ç•¶å‰è·¯å¾‘ä¸‹æ‰€æœ‰éŸ³æ¨‚çš„æ–‡ä»¶è·¯å¾‘
+    int pos = 1;//çµ¦æ¯å€‹éŸ³æ¨‚æ–‡ä»¶é…å€‹åºè™Ÿ
     string oldname;
     string newname;
-    //¨Ï¥Î­¡¥N¾¹¹M¾ú¤å¥ó
+    //ä½¿ç”¨è¿­ä»£å™¨éæ­·æ–‡ä»¶
     filesystem::directory_iterator begin(ress);
     for (filesystem::directory_iterator end; begin != end; ++begin)
     {
-        if (!filesystem::is_directory(begin->path()))//§PÂ_¬O§_¬O¸ê®Æ§¨¡A¬O´N¸õ¹L
+        if (!filesystem::is_directory(begin->path()))//åˆ¤æ–·æ˜¯å¦æ˜¯è³‡æ–™å¤¾ï¼Œæ˜¯å°±è·³é
         {
-            //Àò¨ú¸ô®|¡AÀò¨ú¤å¥ó¦W¨ÃÂà¬°string¡A§PÂ_¤å¥ó¬O§_¬°­µ¼Ö¤å¥ó(.mp3)
+            //ç²å–è·¯å¾‘ï¼Œç²å–æ–‡ä»¶åä¸¦è½‰ç‚ºstringï¼Œåˆ¤æ–·æ–‡ä»¶æ˜¯å¦ç‚ºéŸ³æ¨‚æ–‡ä»¶(.mp3)
             if (ismusic(begin->path().filename().string()))
             {
-                //¦pªG­µ¼Ö¤å¥ó¦³ªÅ®æ,´À´«¬°_
+                //å¦‚æœéŸ³æ¨‚æ–‡ä»¶æœ‰ç©ºæ ¼,æ›¿æ›ç‚º_
                 oldname = resroot + "/" + begin->path().filename().string();
                 newname = getnewname(oldname);
-                int resulf = rename(oldname.c_str(), newname.c_str());//.c_str():±NstringÂà´«¦¨c»y¨¥ªºstr
+                int resulf = rename(oldname.c_str(), newname.c_str());//.c_str():å°‡stringè½‰æ›æˆcèªè¨€çš„str
                 music[pos++] = newname;
 
             }
         }
     }
-    cout << "­µ¼Ö®w¥[¸ü¦¨¥\....." << endl;
+    cout << "éŸ³æ¨‚åº«åŠ è¼‰æˆåŠŸ....." << endl;
 }
-//¨Ï¥Î«Øºc¤lªì©l¤Æ
+//ä½¿ç”¨å»ºæ§‹å­åˆå§‹åŒ–
 Res::Res()
 {
-    cout << "ªì©l¤Æ­µ¼Ö®w.....\n\n";
+    cout << "åˆå§‹åŒ–éŸ³æ¨‚åº«.....\n\n";
     traverfile();
 }
