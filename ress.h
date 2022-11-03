@@ -16,7 +16,7 @@ using namespace std;
 class Res
 {
 public:
-    //static Res* getres();//提供引用來訪問數據（單例模式）
+   
     static bool ismusic(const string& name);//判斷文件是否為音樂文件(.mp3)
     static string getnewname(string name);//如果音樂文件有空格,替換為_
     static void traverfile(); //遍歷文件夾
@@ -39,6 +39,7 @@ string Res::getnewname(string name)
 {
     for (int i = 0; i < name.size(); i++)
     {
+        
         if (name[i] == ' ')
         {
             name[i] = '_';
@@ -63,22 +64,22 @@ void Res::traverfile()
         exit(0);
     }
 
-    //得到當前路徑下所有音樂的文件路徑
-    int pos = 1;//給每個音樂文件配個序號
+    
+    int pos = 1;//音樂文件序號
     string oldname;
     string newname;
     //使用迭代器遍歷文件
     filesystem::directory_iterator begin(ress);
     for (filesystem::directory_iterator end; begin != end; ++begin)
     {
-        if (!filesystem::is_directory(begin->path()))//判斷是否是資料夾，是就跳過
+        if (!filesystem::is_directory(begin->path()))//判斷是否是資料夾，否就繼續
         {
-            //獲取路徑，獲取文件名並轉為string，判斷文件是否為音樂文件(.mp3)
+            //判斷文件是否為音樂文件(.mp3)
             if (ismusic(begin->path().filename().string()))
             {
-                //如果音樂文件有空格,替換為_
+                //獲取文件名並轉為string
                 oldname = resroot + "/" + begin->path().filename().string();
-                newname = getnewname(oldname);
+                newname = getnewname(oldname);//如果音樂文件有空格,替換為_
                 int resulf = rename(oldname.c_str(), newname.c_str());//.c_str():將string轉換成c語言的str
                 music[pos++] = newname;
 
