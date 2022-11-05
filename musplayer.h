@@ -1,4 +1,4 @@
-#include "ress.h"
+#include "res.h"
 
 
 //播放器類
