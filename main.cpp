@@ -1,5 +1,5 @@
-#include "ress.h"
-#include"musplayer.h"
+#include "res.h"
+#include"musicplayer.h"
 
 int main()
 {
@@ -14,4 +14,3 @@ int main()
     }
     return 0;
 }
-
