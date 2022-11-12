@@ -12,34 +12,31 @@
 #include <mmsystem.h>
 #pragma comment(lib,"winmm.lib")
 using namespace std;
-//音樂資源類 使用靜態成員
+//音樂資源類 使用靜態成員，讓類外可以使用
 class Res
 {
 public:
-   
     static bool ismusic(const string& name);//判斷文件是否為音樂文件(.mp3)
     static string getnewname(string name);//如果音樂文件有空格,替換為_
     static void traverfile(); //遍歷文件夾
     static map<int, string> music; //使用容器儲存音樂文件
     Res();
 private:
-
 };
 
 map<int, string>Res::music;
+
 //判斷文件是否為音樂文件(.mp3)
 bool Res::ismusic(const string& name)
 {
     int lenght = name.size();
-    //substr函數，用來擷取檔案後面的字
-    return name.substr(lenght - 4) == ".mp3";
+    return name.substr(lenght - 4) == ".mp3"; //substr函數，用來擷取檔案後面的字
 }
-//如果音樂文件有空格,替換為_
+//遍歷音樂名稱，如果有空格，替換為_
 string Res::getnewname(string name)
 {
     for (int i = 0; i < name.size(); i++)
     {
-        
         if (name[i] == ' ')
         {
             name[i] = '_';
@@ -49,12 +46,11 @@ string Res::getnewname(string name)
 }
 //遍歷文件夾
 void Res::traverfile()
-{
-    system("color 70");
+{ 
+    cout << "初始化音樂庫.....\n\n";
     cout << "請輸入音樂庫文件夾路徑:";
     string resroot;
     cin >> resroot;
-
 
     filesystem::path ress(resroot);
     //判定路徑是否存在
@@ -64,7 +60,6 @@ void Res::traverfile()
         exit(0);
     }
 
-    
     int pos = 1;//音樂文件序號
     string oldname;
     string newname;
@@ -80,7 +75,7 @@ void Res::traverfile()
                 //獲取文件名並轉為string
                 oldname = resroot + "/" + begin->path().filename().string();
                 newname = getnewname(oldname);//如果音樂文件有空格,替換為_
-                int resulf = rename(oldname.c_str(), newname.c_str());//.c_str():將string轉換成c語言的str
+                int resulf = rename(oldname.c_str(), newname.c_str());// 使用rename 重新命名  ; .c_str():將string轉換成c語言的str
                 music[pos++] = newname;
 
             }
@@ -88,9 +83,7 @@ void Res::traverfile()
     }
     cout << "音樂庫加載成功....." << endl;
 }
-//使用建構子初始化
+
 Res::Res()
 {
-    cout << "初始化音樂庫.....\n\n";
-    traverfile();
 }
